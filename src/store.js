@@ -38,8 +38,8 @@ function reducer(state = initialState, action){
     }
 }
 
+/*
 const store = createStore(reducer);
-
 store.dispatch({ type: 'account/deposit', payload: 500 });
 //console.log('Hey Redux');
 console.log(store.getState());
@@ -52,3 +52,36 @@ console.log(store.getState());
 
 store.dispatch({type: 'account/payLoan'});
 console.log(store.getState())
+*/
+
+
+const store = createStore(reducer);
+
+//ActionCreator Functions return action
+function deposit(amount){
+    return { type: "account/deposit", payload: amount };
+}
+function withdraw(amount){
+    return { type: 'account/withdraw', payload: amount }
+}
+function requestLoan(amount, purpose){
+    return {
+      type: "account/requestLoan",
+      payload: { amount, purpose },
+    };
+}
+function payLoan(){
+    return { type: "account/payLoan" };
+}
+
+store.dispatch(deposit(500));
+console.log(store.getState());
+
+store.dispatch(withdraw(200));
+console.log(store.getState());
+
+store.dispatch(requestLoan(100000, 'Buy a Car'));
+console.log(store.getState());
+
+store.dispatch(payLoan());
+console.log(store.getState());
