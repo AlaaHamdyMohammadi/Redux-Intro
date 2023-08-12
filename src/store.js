@@ -1,4 +1,4 @@
-
+import { createStore } from "redux";
 
 const initialState = {
     balance: 0,
